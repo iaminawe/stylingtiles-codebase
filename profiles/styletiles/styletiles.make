@@ -66,8 +66,11 @@ projects[ctools][version] = 1.x-dev
 projects[ds][subdir] = contrib
 projects[ds][version] = 2.x-dev
 
-projects[defaultcontent][subdir] = contrib
-projects[defaultcontent][version] = 1.0-alpha9
+projects[uuid_features][subdir] = contrib
+projects[uuid_features][version] = 1.0-alpha3
+
+projects[uuid][subdir] = contrib
+projects[uuid][version] = 1.0-alpha5
 
 projects[entity][subdir] = contrib
 projects[entity][version] = 1.x-dev
