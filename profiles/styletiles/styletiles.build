@@ -1,0 +1,9 @@
+api = 2
+core = 7.x
+
+projects[drupal][type] = core
+projects[drupal][version] = 7.22
+
+projects[styletiles][type] = "profile"
+projects[styletiles][download][type] = "git"
+projects[styletiles][download][url] = "https://github.com/iaminawe/stylingtiles.git"

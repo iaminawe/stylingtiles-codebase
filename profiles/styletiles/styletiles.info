@@ -1,0 +1,106 @@
+name = Style Tiles Installer
+description = Installs a style tile generating machine
+version = 7.x-0
+core = 7.x
+
+; ----------
+; Dependencies
+; ----------
+; Administration
+dependencies[] = admin_devel
+dependencies[] = admin_menu
+dependencies[] = admin_menu_toolbar
+dependencies[] = admin_views
+dependencies[] = toolbar_admin_menu
+
+; Chaos tool suite
+dependencies[] = ctools
+
+; Context
+dependencies[] = context_layouts
+dependencies[] = context_ui
+dependencies[] = context
+
+; Core
+dependencies[] = block
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = help
+dependencies[] = image
+dependencies[] = menu
+dependencies[] = path
+dependencies[] = options
+dependencies[] = overlay
+dependencies[] = rdf
+dependencies[] = search
+dependencies[] = taxonomy
+dependencies[] = toolbar
+
+; Display Suite
+dependencies[] = ds_extras
+dependencies[] = ds_ui
+dependencies[] = ds
+
+
+; Fields
+dependencies[] = email
+dependencies[] = entityreference
+dependencies[] = field_group
+dependencies[] = link
+dependencies[] = references_dialog
+
+
+; Other
+dependencies[] = advanced_help
+dependencies[] = backports
+dependencies[] = backup_migrate
+dependencies[] = better_formats
+dependencies[] = diff
+dependencies[] = entity
+dependencies[] = entity_token
+dependencies[] = libraries
+dependencies[] = logintoboggan
+dependencies[] = menu_block
+dependencies[] = pathauto
+dependencies[] = robotstxt
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = token_tweaks
+
+; User interface
+dependencies[] = jquery_update
+dependencies[] = wysiwyg
+
+; Views
+dependencies[] = views_bulk_operations
+dependencies[] = views_ui
+dependencies[] = views
+
+; Features
+dependencies[] = features
+
+;custom
+;dependencies[] = styletiles_global
+;dependencies[] = styletiles_pages
+;dependencies[] = styletiles_stores
+;dependencies[] = styletiles_importers
+;dependencies[] = styletiles_maps
+
+files[] = styletiles.profile
+
+
+; Information added by drush on 2013-03-18
+version = ""
+project = "styletiles"
+datestamp = "1363601045"
+
+
+
+; Information added by drush on 2013-09-08
+version = "unknown"
+project = "styletiles"
+datestamp = "1378672981"
+

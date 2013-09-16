@@ -1,0 +1,114 @@
+<?php
+/**
+ * @file
+ * Provides a Views style plugin to display content in a responsive grid.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function views_responsive_grid_views_api() {
+  return array('api' => '3.0');
+}
+
+/**
+ * Display a view as a responsive grid style.
+ */
+function template_preprocess_views_view_responsive_grid(&$vars) {
+  $view = $vars['view'];
+  $result = $view->result;
+  $options = $view->style_plugin->options;
+  $handler = $view->style_plugin;
+
+  $columns  = $options['columns'];
+  $vars['classes_array'][] = 'views-responsive-grid';
+  $vars['classes_array'][] = 'views-responsive-grid-' . $options['alignment'];
+  $vars['classes_array'][] = 'views-columns-' . $columns;
+  $vars['classes_array'] = array_merge($vars['classes_array'], explode(' ', $options['wrapper_classes']));
+  $vars['classes_array'] = array_filter($vars['classes_array']);
+  // Check if there are views results to process.
+  if (!empty($vars['rows'])) {
+    $col_id = 0;
+    $row_id = 0;
+    $current = array_shift(array_keys($vars['rows']));
+    // Determine style alignment.
+    if ($options['alignment'] == 'horizontal') {
+      $rows = array();
+      $vars['row_classes'] = array();
+      foreach ($vars['rows'] as $i => $row) {
+        $classes = explode(' ', $options['column_classes']);
+        $classes[] = 'views-column';
+        $classes[] = 'views-column-' . ($col_id + 1);
+        $rows[$row_id][$col_id] = array(
+          'classes' => implode(' ', $classes),
+          'content' => $vars['rows'][$current],
+        );
+        $classes = explode(' ', $options['row_classes']);
+        $classes[] = 'views-row';
+        $classes[] = 'views-row-' . ($row_id + 1);
+        $vars['row_classes'][$row_id] = implode(' ', $classes);
+
+        if ($row_id == 0) {
+          $vars['row_classes'][$row_id] .= ' views-row-first';
+        }
+        elseif ($row_id == ceil(count($vars['rows']) / $columns) - 1) {
+          $vars['row_classes'][$row_id] .= ' row-last';
+        }
+        if ($col_id == 0) {
+          $rows[$row_id][$col_id]['classes'] .= ' views-column-first';
+          $col_id++;
+        }
+        elseif ($col_id == $columns - 1) {
+          $rows[$row_id][$col_id]['classes'] .= ' views-column-last';
+          $col_id = 0;
+          $row_id++;
+        }
+        else {
+          $col_id++;
+        }
+        $current++;
+      }
+      $vars['rows'] = $rows;
+    }
+    else {
+      $cols = array();
+      $extra = count($vars['rows']) % $columns;
+      $per_col = floor(count($vars['rows']) / $columns);
+      $vars['column_classes'] = array();
+      for ($i = 0; $i < $columns; $i++) {
+        $classes = explode(' ', $options['column_classes']);
+        $classes[] = 'views-column';
+        $classes[] = 'views-column-' . ($col_id + 1);
+        $vars['column_classes'][$i] = $classes;
+        if ($i == 0) {
+          $vars['column_classes'][$i][] = 'views-column-first';
+        }
+        elseif ($i == $columns - 1) {
+          $vars['column_classes'][$i][] = 'views-column-last';
+        }
+        $vars['column_classes'][$i] = implode(' ', $vars['column_classes'][$i]);
+        for ($n = 0; $n <= ($per_col - 1) + ($i < $extra ? 1 : 0); $n++) {
+          $classes = explode(' ', $options['row_classes']);
+          $classes[] = 'views-row';
+          $classes[] = 'views-row-' . ($row_id + 1);
+          $cols[$i][$n] = array(
+            'classes' => $classes,
+            'content' => $vars['rows'][$current],
+          );
+          if ($n == 0) {
+            $cols[$i][$n]['classes'][] = 'views-row-first';
+          }
+          elseif ($n == ($per_col - 1) + ($i < $extra ? 1 : 0)) {
+            $cols[$i][$n]['classes'][] = 'views-row-last';
+          }
+          $cols[$i][$n]['classes'] = implode(' ', $cols[$i][$n]['classes']);
+          $current++;
+          $row_id++;
+        }
+        $row_id = 0;
+      }
+      $vars['columns'] = $cols;
+    }
+  }
+  $vars['classes'] = implode(' ', $vars['classes_array']);
+}
