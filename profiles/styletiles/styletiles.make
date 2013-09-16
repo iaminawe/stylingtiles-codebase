@@ -33,6 +33,9 @@ projects[link][version] = 1.0
 projects[feedback][subdir] = contrib
 projects[feedback][version] = 2.x-dev
 
+projects[node_clone][subdir] = contrib
+projects[node_clone][version] = 1.0-rc1
+
 
 ;;;;;;;;;
 ; Path tools
@@ -62,6 +65,9 @@ projects[ctools][version] = 1.x-dev
 
 projects[ds][subdir] = contrib
 projects[ds][version] = 2.x-dev
+
+projects[defaultcontent][subdir] = contrib
+projects[defaultcontent][version] = 1.0-alpha9
 
 projects[entity][subdir] = contrib
 projects[entity][version] = 1.x-dev
@@ -129,10 +135,8 @@ projects[special_menu_items][version] = 2.0
 projects[token][subdir] = contrib
 projects[token][version] = 1.4
 
-; Can be removed when http://drupal.org/node/1058912 is resolved
 projects[token_tweaks][subdir] = contrib
 projects[token_tweaks][version] = 1.x-dev
-
 
 projects[webform][subdir] = contrib
 projects[webform][version] = 3.18
@@ -260,7 +264,7 @@ projects[zenstrap][version] = 1.0
 ;;;;;;;;;
 
 libraries[bootstrap][download][type] = "get"
-libraries[bootstrap][download][url] = "http://twitter.github.com/bootstrap/assets/bootstrap.zip"
+libraries[bootstrap][download][url] = "http://getbootstrap.com/2.3.2/assets/bootstrap.zip"
 libraries[bootstrap][directory_name] = "bootstrap"
 libraries[bootstrap][destination] = "themes/zenstrap"
 
