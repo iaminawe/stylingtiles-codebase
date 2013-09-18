@@ -162,12 +162,6 @@ projects[views_bulk_operations][version] = 3.1
 projects[flippy][subdir] = contrib
 projects[flippy][version] = 1.2
 
-projects[votingapi][subdir] = contrib
-projects[votingapi][version] = 2.11
-
-projects[vote_up_down][subdir] = contrib
-projects[vote_up_down][version] = 1.x-dev
-
 
 ;;;;;;;;;
 ; SEO Tools
