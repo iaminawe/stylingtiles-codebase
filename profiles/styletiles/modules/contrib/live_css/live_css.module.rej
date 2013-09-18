@@ -1,0 +1,17 @@
+***************
+*** 177,182 ****
+      $settings['fontsize'] = variable_get('live_css_fontsize', '12px');
+      $settings['tabsize'] = (int)variable_get('live_css_tabsize', 2);
+      $settings['softtabs'] = (boolean)variable_get('live_css_softtabs', 1);
+      drupal_add_js(array('live_css' => $settings), 'setting');
+      
+      drupal_add_js(drupal_get_path('module', 'live_css') . '/ace/src/ace.js');
+--- 190,197 ----
+      $settings['fontsize'] = variable_get('live_css_fontsize', '12px');
+      $settings['tabsize'] = (int)variable_get('live_css_tabsize', 2);
+      $settings['softtabs'] = (boolean)variable_get('live_css_softtabs', 1);
++     $settings['custommode'] = (boolean)variable_get('live_css_custommode', 0);
++     $settings['customfile'] = live_css_custom_filename();
+      drupal_add_js(array('live_css' => $settings), 'setting');
+      
+      drupal_add_js(drupal_get_path('module', 'live_css') . '/ace/src/ace.js');
