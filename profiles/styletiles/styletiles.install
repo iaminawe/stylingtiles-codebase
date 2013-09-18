@@ -12,7 +12,7 @@ function styletiles_install() {
   // Setting for date api.
   variable_set('date_first_day', 1);
 
-  $theme = 'zenstrap';
+  $theme = 'stylestrap';
   $admin_theme = 'seven';
 
   // Enable standard theme.
