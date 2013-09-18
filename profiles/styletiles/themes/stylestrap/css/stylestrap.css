@@ -1,11 +1,27 @@
 /* Stylestrap Custom css for style tiles */
-
-.breadcrumb{
-	display:none;
+.node-style-tile .field-tile-background-image{
+	position:absolute;
+	top:-20px;
+	z-index:10 !important;
 }
 
-.node-style-tile{
+.group-styletile-top{
+	clear:both;
+	height:157px;
 	position:relative;
+	padding: 0px;
+}
+
+.group_styletile_top,
+.group_styletile_left,
+.group_styletile_right,
+.group_styletile_bottom{
+	position:relative;
+	z-index:99 !important;
+	background-color:white;
+	box-sizing:border-box;
+	padding:10px;
+	margin-bottom: 10px;
 }
 
 .field-st-header-image{
@@ -14,24 +30,36 @@
 	left:0px;
 	display:block;
 	width:100%;
-	height:270px;
+	height:170px;
+
 }
 
 .field-st-header-image img{
 	width: 100%;
 }
+.field-st-project-ref .inline{
+	float:left !important;
+}
+
+.field-st-project-ref .field-label{
+	font-weight: bold;
+}
+
+.group_pattern_group,
+.group_colors{
+	clear:both;
+	width:100%;
+	float:left;
+}
 
 .field--st-logo-image{
 	position: absolute;
-	top:10px;
-	left:60px;
+	top:3px;
+	left:0px;
+
 }
 
-.group-styletile-top{
-	clear:both;
-	height:200px;
-	position:relative;
-}
+
 
 .node-style-tile .submitted{
 	position: absolute;
@@ -58,8 +86,8 @@ ul.flippy{
 
 .jquery_colorpicker_color_display{
 	display:block;
-	width:100px;
-	height:100px;
+	width:90px;
+	height:90px;
 }
 
 .field-st-patterns{
