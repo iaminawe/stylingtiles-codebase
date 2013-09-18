@@ -199,7 +199,7 @@ function stylestrap_preprocess_page(&$variables, $hook) {
   if (!(isset($_GET['modal']) && $_GET['modal'])) {
     //we don't make bootstrap.js part of info file as it will be delivered each time
     //and this will break the modal forms
-   // drupal_add_js(drupal_get_path('theme', 'stylestrap') . '/bootstrap/js/bootstrap.js');
+   drupal_add_js(drupal_get_path('theme', 'zenstrap') . '/bootstrap/js/bootstrap.js');
   }
 }
 
