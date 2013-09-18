@@ -274,8 +274,7 @@ projects[dummyimage][version] = 1.4
 projects[zen][type] = theme
 projects[zen][version] = 5.4
 
-projects[zenstrap][type] = theme
-projects[zenstrap][version] = 1.0
+projects[zenstrap][version] = 1.x-dev
 
 ;;;;;;;;;
 ; Libraries
