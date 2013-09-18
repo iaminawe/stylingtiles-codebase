@@ -36,6 +36,9 @@ projects[feedback][version] = 2.x-dev
 projects[node_clone][subdir] = contrib
 projects[node_clone][version] = 1.0-rc1
 
+projects[live_css][subdir] = contrib
+projects[live_css][version] = 2.11
+
 
 ;;;;;;;;;
 ; Path tools
@@ -294,6 +297,10 @@ libraries[liquidcarousel][destination] = "libraries"
 libraries[liquidcarousel][download][type] = "get"
 libraries[liquidcarousel][download][url] = "http://www.nikolakis.net/liquidcarousel/liquidcarousel.zip"
 
-
+libraries[codemirror][directory_name] = "codemirror"
+libraries[codemirrorl][type] = "library"
+libraries[codemirror][destination] = "/sites/all/libraries"
+libraries[codemirror][download][type] = "get"
+libraries[codemirror][download][url] = "http://codemirror.net/codemirror.zip"
 
 
