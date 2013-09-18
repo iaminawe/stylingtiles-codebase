@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the st_Tiles feature.
+ */
+
+include_once 'st_tiles.features.inc';

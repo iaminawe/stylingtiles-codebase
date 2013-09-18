@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the st_general feature.
+ */
+
+include_once 'st_general.features.inc';
