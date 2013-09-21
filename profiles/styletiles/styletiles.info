@@ -33,7 +33,6 @@ dependencies[] = image
 dependencies[] = menu
 dependencies[] = path
 dependencies[] = options
-dependencies[] = overlay
 dependencies[] = rdf
 dependencies[] = search
 dependencies[] = taxonomy
@@ -67,6 +66,7 @@ dependencies[] = menu_block
 dependencies[] = pathauto
 dependencies[] = robotstxt
 dependencies[] = strongarm
+dependencies[] = node_clone
 dependencies[] = token
 dependencies[] = token_tweaks
 
@@ -83,11 +83,11 @@ dependencies[] = views
 dependencies[] = features
 
 ;custom
-;dependencies[] = styletiles_global
-;dependencies[] = styletiles_pages
-;dependencies[] = styletiles_stores
-;dependencies[] = styletiles_importers
-;dependencies[] = styletiles_maps
+dependencies[] = styletiles_global
+dependencies[] = styletiles_pages
+dependencies[] = styletiles_stores
+dependencies[] = styletiles_importers
+
 
 files[] = styletiles.profile
 

@@ -1,8 +1,13 @@
 /* Stylestrap Custom css for style tiles */
 .node-style-tile .field-tile-background-image{
 	position:absolute;
-	top:-20px;
 	z-index:10 !important;
+}
+
+.node-style-tile{
+	position: relative !important;
+
+
 }
 
 .group-styletile-top{
@@ -18,7 +23,7 @@
 .group_styletile_bottom{
 	position:relative;
 	z-index:99 !important;
-	background-color:white;
+	background-color:rgba(255, 255, 255, 0.56);
 	box-sizing:border-box;
 	padding:10px;
 	margin-bottom: 10px;
