@@ -530,7 +530,7 @@ function st_tiles_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 9,
+      'weight' => 6,
     ),
   );
 
@@ -820,11 +820,7 @@ function st_tiles_field_default_field_instances() {
   // Exported field_instance: 'node-style_tile-field_tile_primary_font'
   $field_instances['node-style_tile-field_tile_primary_font'] = array(
     'bundle' => 'style_tile',
-    'default_value' => array(
-      0 => array(
-        'fid' => 282,
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -892,53 +888,6 @@ function st_tiles_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 24,
-    ),
-  );
-
-  // Exported field_instance: 'node-style_tile-field_tile_variation'
-  $field_instances['node-style_tile-field_tile_variation'] = array(
-    'bundle' => 'style_tile',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 20,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'fences_wrapper' => 'div',
-    'field_name' => 'field_tile_variation',
-    'label' => 'Variation',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'html5_tools',
-      'settings' => array(),
-      'type' => 'numberfield',
-      'weight' => 2,
     ),
   );
 
@@ -1015,7 +964,7 @@ function st_tiles_field_default_field_instances() {
     'bundle' => 'style_tile',
     'default_value' => array(
       0 => array(
-        'value' => '<p><input class="form-submit btn btn-large btn-primary" id="edit-submit" name="op" type="submit" value="Large Primary" /> <input class="form-submit btn btn-large" id="edit-button" name="op" type="submit" value="Large Default" /></p><p><button class="btn btn-info" type="button">Default button</button><button class="btn" type="button">Default button</button></p><p><button class="btn btn-small btn-success" type="button">Small button</button></p><a class="btn btn-small" href="#">Small Button</a><a class="btn btn-mini btn-warning" href="#">Mini Button</a>',
+        'value' => '<p><button class="btn btn-primary btn-large">Primary Button</button><input class="form-submit btn btn-large" id="edit-button" name="op" type="submit" value="Large Default" /></p><p><button class="btn" type="button">Default button</button><a class="btn btn-small" href="#">Small Button</a><a class="btn btn-mini" href="#">Mini Button</a></p>',
         'format' => 'full_html',
       ),
     ),
@@ -1220,12 +1169,7 @@ function st_tiles_field_default_field_instances() {
     'bundle' => 'style_tile',
     'default_value' => array(
       0 => array(
-        'value' => '<div class="section tabbed-nav"><ul class="tabs primary"><li class="active"><a class="active" href="/redhen/contact/50">Active Tab</a></li><li><a href="#">Tab2</a></li><li><a href="#">Tab3</a></li><li><a href="#">Tab4</a></li></ul><!-- <dl class="tabs primary">
-					<dd class="active"><a class="active">Active Tab</a></dd>
-					<dd><a href="#">Tab2</a></dd>
-					<dd><a href="#">Tab3</a></dd>
-					<dd><a href="#">Tab4</a></dd>
-				</dl> --></div>',
+        'value' => '<div class="tabbable"><ul class="nav nav-tabs tabs primary"><li class="active"><a data-toggle="tab" href="#tabs1-pane1">Tab 1</a></li><li><a data-toggle="tab" href="#tabs1-pane2">Tab 2</a></li><li><a data-toggle="tab" href="#tabs1-pane3">Tab 3</a></li><li><a data-toggle="tab" href="#tabs1-pane4">Tab 4</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tabs1-pane1"><h4 class="field-label">Pane 1 Content</h4><p class="field-paragraph-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod congue bibendum. Aliquam erat volutpat. Phasellus eget justo lacus. Vivamus pharetra ullamcorper massa, nec ultricies metus gravida egestas. Duis congue viverra arcu, ac aliquet turpis rutrum a.</p></div><div class="tab-pane" id="tabs1-pane2"><h4>Pane 2 Content</h4><p class="field-paragraph-1">Phasellus eget justo lacus. Vivamus pharetra ullamcorper massa, nec ultricies metus gravida egestas. Duis congue viverra arcu, ac aliquet turpis rutrum a. Donec semper vestibulum dapibus. Integer et sollicitudin metus. Vivamus at nisi turpis.</p></div><div class="tab-pane" id="tabs1-pane3"><h4>Pane 3 Content</h4><p class="field-paragraph-1">Donec semper vestibulum dapibus. Integer et sollicitudin metus. Vivamus at nisi turpis. Phasellus vel tellus id felis cursus hendrerit. Suspendisse et arcu felis, ac gravida turpis. Suspendisse potenti. Ut porta rhoncus ligula, sed fringilla felis feugiat eget. In non purus quis elit iaculis tincidunt. Donec at ultrices est.</p></div><div class="tab-pane" id="tabs1-pane4"><h4>Pane 4 Content</h4><p class="field-paragraph-1">Donec semper vestibulum dapibus. Integer et sollicitudin metus. Vivamus at nisi turpis. Phasellus vel tellus id felis cursus hendrerit. Suspendisse et arcu felis, ac gravida turpis. Suspendisse potenti. Ut porta rhoncus ligula, sed fringilla felis feugiat eget. In non purus quis elit iaculis tincidunt. Donec at ultrices est.</p></div></div><!-- /.tab-content --></div><!-- /.tabbable -->',
         'format' => 'full_html',
       ),
     ),
@@ -1359,7 +1303,6 @@ function st_tiles_field_default_field_instances() {
   t('Tile Tags');
   t('Upload a logo to be overlaid over the header. This should be a transparent png and its optional to use this field as the logo may be rendered in as part of the header image.');
   t('Upload an image to be used in the header for this styletile. It will be tiled horizontally but can be up to 1020px wide.');
-  t('Variation');
 
   return $field_instances;
 }

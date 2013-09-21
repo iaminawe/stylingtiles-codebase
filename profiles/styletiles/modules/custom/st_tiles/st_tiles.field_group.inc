@@ -54,9 +54,8 @@ function st_tiles_field_group_info() {
     'label' => 'Colors',
     'weight' => '4',
     'children' => array(
-      0 => 'field_st_patterns',
-      1 => 'field_st_colors',
-      2 => 'field_tile_background_color',
+      0 => 'field_st_colors',
+      1 => 'field_tile_background_color',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -114,8 +113,9 @@ function st_tiles_field_group_info() {
     'children' => array(
       0 => 'field_st_header_image',
       1 => 'field__st_logo_image',
-      2 => 'field_tile_background_image',
-      3 => 'field_tile_comp',
+      2 => 'field_st_patterns',
+      3 => 'field_tile_background_image',
+      4 => 'field_tile_comp',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

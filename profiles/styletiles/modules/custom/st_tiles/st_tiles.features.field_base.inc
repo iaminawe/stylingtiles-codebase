@@ -454,7 +454,6 @@ function st_tiles_field_default_field_bases() {
     'module' => 'font_reference',
     'settings' => array(
       'css_selector' => '.field--st-headline,
-.field-label,
 .block-title',
     ),
     'translatable' => 0,
@@ -488,22 +487,6 @@ function st_tiles_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'font_reference',
-  );
-
-  // Exported field_base: 'field_tile_variation'
-  $field_bases['field_tile_variation'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_tile_variation',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
   );
 
   // Exported field_base: 'field_tileblock'
