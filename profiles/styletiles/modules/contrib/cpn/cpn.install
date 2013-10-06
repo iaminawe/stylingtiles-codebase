@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Installation, schema and update hook implementations.
+ */
 
 /**
  * Implements hook_schema().
@@ -6,9 +10,22 @@
 function cpn_schema() {
   $schema['cpn'] = array(
     'fields' => array(
-      'nid' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0),
-      'css' => array('type' => 'text', 'not null' => FALSE),
-      'js' => array('type' => 'text', 'not null' => FALSE),
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'css' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big',
+      ),
+      'js' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big',
+      ),
     ),
     'primary key' => array('nid'),
   );
@@ -19,20 +36,21 @@ function cpn_schema() {
  * Implements hook_schema_alter().
  */
 function cpn_schema_alter(&$schema) {
-  $schema['block']['fields']['css'] = array('type' => 'text', 'not null' => FALSE);
-  $schema['block']['fields']['js'] = array('type' => 'text', 'not null' => FALSE);
+  // If block table exists, alter its schema. Use this instead of module_exists
+  // because the Block module might be disabled.
+  if (db_table_exists('block')) {
+    $schema['block']['fields']['css'] = array('type' => 'text', 'not null' => FALSE);
+    $schema['block']['fields']['js'] = array('type' => 'text', 'not null' => FALSE);
+  }
 }
 
 /**
  * Implements hook_install().
  */
 function cpn_install() {
-  // Alter block table, as defined in cpn_schema_alter().
-  $ret = array();
-  $schema = array();
-  cpn_schema_alter($schema);
-  foreach ($schema['block']['fields'] as $name => $spec) {
-    db_add_field('block', $name, $spec);
+  // If block table exists, add CPN fields.
+  if (db_table_exists('block')) {
+    cpn_alter_block();
   }
 }
 
@@ -40,32 +58,88 @@ function cpn_install() {
  * Implements hook_uninstall().
  */
 function cpn_uninstall() {
-  // Drop fields from block table, as defined in cpn_schema_alter().
-  $ret = array();
-  $schema = array();
-  cpn_schema_alter($schema);
-  foreach ($schema['block']['fields'] as $name => $spec) {
-    db_drop_field('block', $name);
+  // If block table exists, drop CPN fields.
+  if (db_table_exists('block')) {
+    cpn_unalter_block();
   }
 
   // Delete CSS & JS files.
   file_unmanaged_delete_recursive(variable_get('cpn_path', 'public://cpn'));
 
   // Delete variables.
-  variable_del('cpn_syntax_highlighting');
+  variable_del('cpn_aggregation_css');
+  variable_del('cpn_aggregation_js');
+  variable_del('cpn_global_css');
+  variable_del('cpn_global_css_admin');
+  variable_del('cpn_global_css_agree');
+  variable_del('cpn_global_js');
+  variable_del('cpn_global_js_admin');
+  variable_del('cpn_global_js_agree');
   variable_del('cpn_path');
+  variable_del('cpn_syntax_highlighting');
+  variable_del('cpn_wrapper_block_css');
+  variable_del('cpn_wrapper_block_js');
+  variable_del('cpn_wrapper_node_css');
+  variable_del('cpn_wrapper_node_js');
+
   foreach (array_keys(node_type_get_types()) as $type) {
     variable_del('cpn_css_' . $type);
-    variable_del('cpn_js_' . $type);
     variable_del('cpn_css_enabled_' . $type);
+    variable_del('cpn_js_' . $type);
     variable_del('cpn_js_enabled_' . $type);
   }
 }
 
 /**
- * Update variables to new format.
+ * Implements hook_modules_installed().
+ */
+function cpn_modules_installed($modules) {
+  // After installing block, add its CPN fields.
+  if (in_array('block', $modules)) {
+    cpn_alter_block();
+  }
+}
+
+/**
+ * Adds CPN fields to block table, as defined in cpn_schema_alter().
+ */
+function cpn_alter_block() {
+  $schema = array();
+  cpn_schema_alter($schema);
+  foreach ($schema['block']['fields'] as $name => $spec) {
+    if (!db_field_exists('block', $name)) {
+      db_add_field('block', $name, $spec);
+    }
+  }
+}
+
+/**
+ * Drops CPN fields from block table, as defined in cpn_schema_alter().
+ */
+function cpn_unalter_block() {
+  $schema = array();
+  cpn_schema_alter($schema);
+  foreach ($schema['block']['fields'] as $name => $spec) {
+    if (db_field_exists('block', $name)) {
+      db_drop_field('block', $name);
+    }
+  }
+}
+
+/**
+ * Implementations of hook_update_N().
+ */
+
+/**
+ * Upgrade CPN settings from D6 to D7.
  */
 function cpn_update_7000() {
+  // Fix the path variable.
+  if ($path = variable_get('cpn_path', FALSE)) {
+    variable_set('cpn_path', file_default_scheme() . $path);
+  }
+
+  // Update variables to new format.
   foreach (array_keys(node_type_get_types()) as $node_type) {
     foreach (array('css', 'js') as $type) {
       if (variable_get('cpn_' . $type . '_' . $node_type, FALSE)) {
@@ -74,4 +148,57 @@ function cpn_update_7000() {
       }
     }
   }
+}
+
+/**
+ * Migrate any sites that may have used the patch from
+ * http://drupal.org/node/1423408 to control CSS/JS aggregation.
+ */
+function cpn_update_7100() {
+  $empty = 'flying monkeys';
+
+  $preprocess = variable_get('cpn_preprocess', $empty);
+  if ($preprocess != $empty) {
+    variable_set('cpn_aggregation_css', $preprocess);
+    variable_set('cpn_aggregation_js', $preprocess);
+    variable_del('cpn_preprocess');
+    drupal_set_message(t("The CPN setting from issue #1423408 has been converted to the new format"));
+  }
+}
+
+/**
+ * Make the CSS and JS fields long text fields.
+ */
+function cpn_update_7101() {
+  $table = 'cpn';
+  $field = 'css';
+  $spec = array(
+    'type' => 'text',
+    'not null' => FALSE,
+    'size' => 'big',
+  );
+  db_change_field($table, $field, $field, $spec);
+  $field = 'js';
+  $spec = array(
+    'type' => 'text',
+    'not null' => FALSE,
+    'size' => 'big',
+  );
+  db_change_field($table, $field, $field, $spec);
+  drupal_set_message(t("Expanded the CPN fields to have more space for custom code. That said, you really shouldn't insert that much code."));
+}
+
+/**
+ * Split the CSS & JS wrappers.
+ */
+function cpn_update_7102() {
+  foreach (array('css', 'js') as $type) {
+    $wrapper = variable_get('cpn_wrapper_' . $type, '');
+    if (!empty($wrapper)) {
+      variable_set('cpn_wrapper_block_' . $type, $wrapper);
+      variable_set('cpn_wrapper_node_' . $type, $wrapper);
+    }
+    variable_del('cpn_wrapper_' . $type);
+  }
+  drupal_set_message(t('The code wrappers have been split so that they may be customized separately for blocks and nodes.'));
 }

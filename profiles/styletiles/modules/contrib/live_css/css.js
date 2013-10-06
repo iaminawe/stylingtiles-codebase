@@ -175,9 +175,6 @@ window.styler = {
             for(var i = 0; i < this.sList.length; i++)
                 addItem(this.sList[i]);
         }
-        if ($('#csidebar .stylelist option').length == 1) {
-          $('#csidebar .stylelist').hide();
-        }
     },
     saveCSS: function(){
       $('#csidebar .save').html('...');

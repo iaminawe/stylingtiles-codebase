@@ -1,9 +1,12 @@
-(function ($) {
+/**
+ * @file
+ * Custom JS for enabling/disabling the CodeMirror interface.
+ */
 
+(function ($) {
   Drupal.behaviors.cpnCodeMirror = {
 
     attach: function(context, settings) {
-
       // Append enable/disable links.
       $('.form-item-cpn-css, .form-item-cpn-js').each(function() {
         $('.description', this).append(' <a href="#" class="cpn-toggle">Enable syntax highlighting</a>.');
@@ -34,9 +37,7 @@
         }
         return false;
       });
-
     }
 
   };
-
 })(jQuery);

@@ -9,6 +9,14 @@
  * Implements hook_flush_caches().
  */
 function libraries_flush_caches() {
+  // Clear static caches.
+  // We don't clear the 'libraries_load' static cache, because that could result
+  // in libraries that had been loaded before the cache flushing to be loaded
+  // again afterwards.
+  foreach (array('libraries_get_path', 'libraries_info') as $name) {
+    drupal_static_reset($name);
+  }
+
   // @todo When upgrading from 1.x, update.php attempts to flush caches before
   //   the cache table has been created.
   // @see http://drupal.org/node/1477932
@@ -158,6 +166,13 @@ function libraries_scan_info_files() {
  *   An array of library information, passed by reference.
  */
 function libraries_invoke($group, &$library) {
+  // When introducing new callback groups in newer versions, stale cached
+  // library information somehow reaches this point during the database update
+  // before clearing the library cache.
+  if (empty($library['callbacks'][$group])) {
+    return;
+  }
+
   foreach ($library['callbacks'][$group] as $callback) {
     libraries_traverse_library($library, $callback);
   }
@@ -651,16 +666,6 @@ function libraries_load($name, $variant = NULL) {
  *   The number of loaded files.
  */
 function libraries_load_files($library) {
-  // Load integration files.
-  if (!empty($library['integration files'])) {
-    foreach ($library['integration files'] as $module => $files) {
-      libraries_load_files(array(
-        'files' => $files,
-        'path' => '',
-        'library path' => drupal_get_path('module', $module),
-      ));
-    }
-  }
 
   // Construct the full path to the library for later use.
   $path = $library['library path'];
@@ -709,6 +714,17 @@ function libraries_load_files($library) {
         require_once $file_path;
         $count++;
       }
+    }
+  }
+
+  // Load integration files.
+  if (!empty($library['integration files'])) {
+    foreach ($library['integration files'] as $module => $files) {
+      libraries_load_files(array(
+        'files' => $files,
+        'path' => '',
+        'library path' => drupal_get_path('module', $module),
+      ));
     }
   }
 

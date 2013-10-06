@@ -873,7 +873,7 @@ function ds_render_block_field($field) {
   $contextual_links = array();
   $contextual = module_exists('contextual') && user_access('access contextual links');
   if ($contextual) {
-    if (is_array($block['content']) && isset($block['content']['#contextual_links'])) {
+    if (isset($block['content']) && is_array($block['content']) && isset($block['content']['#contextual_links'])) {
       $contextual_links = $block['content']['#contextual_links'];
     }
   }

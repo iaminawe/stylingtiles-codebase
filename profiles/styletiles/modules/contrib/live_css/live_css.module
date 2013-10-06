@@ -19,12 +19,6 @@ function live_css_menu() {
     'access arguments' => array('edit css'),
     'type' => MENU_NORMAL_ITEM
   );
-  $form['live_css_custommode'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Customer mode'),
-    '#default_value' => variable_get('live_css_custommode', 0),
-    '#description' => t('Add an initially empty CSS file and only allow to edit that file.')
-  );
   
   return $items;
 }
@@ -165,13 +159,6 @@ function live_css_list_files($folder){
   return $results;
 }
 
-function live_css_custom_filename() {
-  $filename = variable_get('file_public_path', 'sites/default/files') . '/custom.css';
-  if (!file_exists($filename)) {
-    file_put_contents($filename, '');
-  }
-  return $filename;
-}
 
 /**
  * Implements hook_init().
@@ -215,9 +202,6 @@ function live_css_init() {
     // Load the list of stylesheets
     drupal_add_css(drupal_get_path('module', 'live_css') . '/css.css', array('preprocess' => FALSE));
     drupal_add_js(drupal_get_path('module', 'live_css') . '/css.js');
-
-    //add customer css file
-    drupal_add_css(live_css_custom_filename(), array('group' => CSS_THEME, 'weight' => CSS_THEME + 1, 'preprocess' => FALSE));
   }
 }
 

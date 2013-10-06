@@ -1,13 +1,29 @@
 /* Stylestrap Custom css for style tiles */
+body{
+background-color: #ececec;
+}
+
+
+
+.brand span{
+	color:black;
+}
+
+.breadcrumb{
+	display:none;
+}
+
 .node-style-tile .field-tile-background-image{
 	position:absolute;
-	z-index:10 !important;
+	z-index:1 !important;
+	top:0;
+
 }
 
 .node-style-tile{
 	position: relative !important;
-
-
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .group-styletile-top{
@@ -17,16 +33,33 @@
 	padding: 0px;
 }
 
-.group_styletile_top,
-.group_styletile_left,
-.group_styletile_right,
-.group_styletile_bottom{
+.node-style-tile .group_styletile_bottom{
+	clear:both;
+}
+
+.field-group-format{
+	padding-right: 20px;
 	position:relative;
-	z-index:99 !important;
-	background-color:rgba(255, 255, 255, 0.56);
+	z-index:2 !important;
+}
+
+.node-style-tile .group_styletile_top,
+.node-style-tile .group_styletile_left,
+.node-style-tile .group_styletile_right,
+.node-style-tile .group_styletile_bottom{
+	position:relative;
 	box-sizing:border-box;
 	padding:10px;
 	margin-bottom: 10px;
+	z-index:99 !important;
+}
+
+body.toolbar-drawer{
+	padding-top:0 !important;
+}
+
+body.toolbar{
+	padding-top:0 !important;
 }
 
 .field-st-header-image{

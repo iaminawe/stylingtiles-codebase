@@ -5,9 +5,9 @@ configure = admin/config/user-interface/fontyourface/ransom_note
 dependencies[] = fontyourface
 core = 7.x
 
-; Information added by drupal.org packaging script on 2013-05-25
+; Information added by drupal.org packaging script on 2013-10-01
 version = "7.x-1.0-alpha2+0-dev"
 core = "7.x"
 project = "random_fonts"
-datestamp = "1369451367"
+datestamp = "1380624797"
 

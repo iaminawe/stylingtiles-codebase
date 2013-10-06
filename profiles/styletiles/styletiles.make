@@ -82,7 +82,7 @@ projects[entity][subdir] = contrib
 projects[entity][version] = 1.x-dev
 
 projects[fontyourface][subdir] = contrib
-projects[fontyourface][version] = 2.8
+projects[fontyourface][version] = 2.x-dev
 
 projects[random_fonts][subdir] = contrib
 projects[random_fonts][version] = 1.x-dev
@@ -113,6 +113,9 @@ projects[jquery_update][version] = 2.x-dev
 
 projects[jquery_colorpicker][subdir] = contrib
 projects[jquery_colorpicker][version] = 1.0-rc2
+
+projects[color_field][subdir] = contrib
+projects[color_field][version] = 1.6
 
 projects[ds_bootstrap_layouts][subdir] = contrib
 projects[ds_bootstrap_layouts][version] = 1.1
@@ -265,19 +268,22 @@ projects[dummyimage][version] = 1.4
 ; Themes
 ;;;;;;;;;
 
-projects[zen][type] = theme
-projects[zen][version] = 5.4
+;projects[zen][type] = theme
+;projects[zen][version] = 5.4
 
-projects[zenstrap][version] = 1.x-dev
+;projects[zenstrap][version] = 1.x-dev
+
+projects[bootstrap][version] = 3.0-rc1
+projects[bootstrap][type] = theme
 
 ;;;;;;;;;
 ; Libraries
 ;;;;;;;;;
 
-libraries[bootstrap][download][type] = "get"
-libraries[bootstrap][download][url] = "http://getbootstrap.com/2.3.2/assets/bootstrap.zip"
-libraries[bootstrap][directory_name] = "bootstrap"
-libraries[bootstrap][destination] = "themes/zenstrap"
+;libraries[bootstrap][download][type] = "get"
+;libraries[bootstrap][download][url] = "http://getbootstrap.com/2.3.2/assets/bootstrap.zip"
+;libraries[bootstrap][directory_name] = "bootstrap"
+;libraries[bootstrap][destination] = "themes/zenstrap"
 
 libraries[ckeditor][download][type] = "get"
 libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.3/ckeditor_3.6.3.zip"
@@ -301,11 +307,4 @@ libraries[liquidcarousel][type] = "library"
 libraries[liquidcarousel][destination] = "libraries"
 libraries[liquidcarousel][download][type] = "get"
 libraries[liquidcarousel][download][url] = "http://www.nikolakis.net/liquidcarousel/liquidcarousel.zip"
-
-libraries[codemirror][directory_name] = "codemirror"
-libraries[codemirrorl][type] = "library"
-libraries[codemirror][destination] = "/sites/all/libraries"
-libraries[codemirror][download][type] = "get"
-libraries[codemirror][download][url] = "http://codemirror.net/codemirror.zip"
-
 

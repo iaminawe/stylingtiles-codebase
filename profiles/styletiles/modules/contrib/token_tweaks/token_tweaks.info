@@ -3,9 +3,9 @@ description = Allows administrators to disable token types or tokens to improve 
 core = 7.x
 dependencies[] = token
 
-; Information added by drupal.org packaging script on 2011-09-08
+; Information added by drupal.org packaging script on 2013-10-01
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "token_tweaks"
-datestamp = "1315443386"
+datestamp = "1380640453"
 

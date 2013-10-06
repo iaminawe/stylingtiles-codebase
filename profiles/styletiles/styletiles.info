@@ -39,9 +39,9 @@ dependencies[] = taxonomy
 dependencies[] = toolbar
 
 ; Display Suite
-dependencies[] = ds_extras
-dependencies[] = ds_ui
-dependencies[] = ds
+;dependencies[] = ds_extras
+;dependencies[] = ds_ui
+;dependencies[] = ds
 
 
 ; Fields
@@ -49,7 +49,7 @@ dependencies[] = email
 dependencies[] = entityreference
 dependencies[] = field_group
 dependencies[] = link
-dependencies[] = references_dialog
+;dependencies[] = references_dialog
 
 
 ; Other
@@ -66,9 +66,13 @@ dependencies[] = menu_block
 dependencies[] = pathauto
 dependencies[] = robotstxt
 dependencies[] = strongarm
-dependencies[] = node_clone
 dependencies[] = token
 dependencies[] = token_tweaks
+dependencies[] = fences
+dependencies[] = cpn
+dependencies[] = fontyourface
+dependencies[] = fontyourface_ui
+
 
 ; User interface
 dependencies[] = jquery_update
@@ -83,11 +87,11 @@ dependencies[] = views
 dependencies[] = features
 
 ;custom
-dependencies[] = styletiles_global
-dependencies[] = styletiles_pages
-dependencies[] = styletiles_stores
-dependencies[] = styletiles_importers
-
+dependencies[] = st_general
+dependencies[] = st_projects
+dependencies[] = st_tiles
+;dependencies[] = st_content
+;dependencies[] = st_welcome
 
 files[] = styletiles.profile
 
